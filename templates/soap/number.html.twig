@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="sidebar">
+        <br>
+        <div>
+            <form action="data" method="post" class="form-example">
+                <div class="form-example">
+                    <label for="wsdl">WSDL</label><br>
+                    <input v-model="wsdl" type="text" name="wsdl" id="wsdl" required>
+                </div>
+                <div class="form-example">
+                    <label for="login">Login</label><br>
+                    <input v-model="login" type="text" name="login" id="login" required>
+                </div>
+                <div class="form-example">
+                    <label for="password">Password</label><br>
+                    <input v-model="password" type="password" name="password" id="password" required>
+                </div>
+                <br>
+                <div class="form-example">
+                    <input type="submit" class="btn btn-secondary" value="Получить список методов">
+                </div>
+            </form>
+        </div>
+
+        <div v-for="soapFunction in soapFunctions">
+            <br>
+            <div>
+                <b>${ soapFunction.methodName }$</b>&nbsp;
+                <br>
+                <div @click="sendRequest(soapFunction)" type="button" class="btn btn-primary">Отправить запрос</div>
+
+            </div>
+
+            <div v-for="param in soapFunction.paramList">
+                (${ param.type }$) ${ param.name }$
+                <br>
+                <input type="text" v-model="param.value">
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="content">
+        <br>
+        <vue-json-pretty
+                :path="'res'"
+                :data="soapResponse"
+                @click="handleClick"
+                :show-line="true"
+                :show-line-number="true"
+                :show-icon="true"
+                :show-length="true"
+                :show-double-quotes="true"
+                :show-key-value-space="true"
+                :collapseds-on-click-brackets="true"
+                :set-path-collapsible="true"
+        >
+        </vue-json-pretty>
+    </div>
+{% endblock %}

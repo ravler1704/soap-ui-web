@@ -1,0 +1,38 @@
+{
+    "devDependencies": {
+        "@babel/core": "^7.17.0",
+        "@babel/preset-env": "^7.16.0",
+        "@hotwired/stimulus": "^3.0.0",
+        "@symfony/stimulus-bridge": "^3.2.0",
+        "@symfony/ux-vue": "file:vendor/symfony/ux-vue/assets",
+        "@symfony/webpack-encore": "^4.0.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^9.1.2",
+        "babel-plugin-lodash": "^3.3.4",
+        "babel-preset-env": "^1.7.0",
+        "bootstrap": "^5.2.3",
+        "core-js": "^3.23.0",
+        "lodash-webpack-plugin": "^0.11.6",
+        "regenerator-runtime": "^0.13.9",
+        "sass": "^1.60.0",
+        "sass-loader": "^13.0.0",
+        "webpack": "^5.77.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-notifier": "^1.15.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "jquery": "^3.6.4",
+        "lodash": "^4.17.21",
+        "pretty-print-json": "^1.4.1",
+        "vue": "^3.2.47",
+        "vue-json-pretty": "^2.2.4"
+    }
+}
