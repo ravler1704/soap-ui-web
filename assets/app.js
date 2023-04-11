@@ -12,9 +12,6 @@ require('./css/app.scss');
 createApp(window.vueapp = {
     data() {
         return {
-            test: 'its working',
-            count: 0,
-            trans: '',
             soapFunctions: '',
             soapResponse: '',
             sendRequestRoute: null,
@@ -28,8 +25,6 @@ createApp(window.vueapp = {
         VueJsonPretty
     },
     mounted() {
-        debugger;
-        this.trans = this.$el.parentElement.getAttribute('data-trans');
         this.soapFunctions = JSON.parse(this.$el.parentElement.getAttribute('data-soap-functions'));
         this.soapResponse = JSON.parse(this.$el.parentElement.getAttribute('data-soap-response'));
         this.sendRequestRoute = JSON.parse(this.$el.parentElement.getAttribute('data-send-request-route'));
@@ -39,7 +34,6 @@ createApp(window.vueapp = {
     },
     methods: {
         getRequestMethodHref: function (methodName) {
-            // this.soapFunctions;
             let queryParams = [];
             _.forEach(this.soapFunctions, (el) => {
                 _.forEach(el.paramList, (param) => {
@@ -58,7 +52,6 @@ createApp(window.vueapp = {
             return '?methodName=' + methodName + otherParamsStr;
         },
         sendRequest: function(soapFunction) {
-            debugger;
             self = this;
             this.isLoading = true;
             $.ajax({
@@ -74,26 +67,16 @@ createApp(window.vueapp = {
                     }
                 },
                 error: function (data, textStatus, errorThrown) {
-                    debugger;
                     if (data.responseJSON.detail) {
                         self.soapResponse = data.responseJSON.detail
                     }
-                    alert("Ошибка при выполнении запроса");
+                    alert("Request execution error");
                 },
                 success: function (data) {
-                    debugger;
                     self.soapResponse = data.soapResponse;
-                    alert("Успешно");
+                    alert("Successfully");
                 }
             });
-            // if (data && data.successMessage) {
-            //     this.postList = this.postList.concat(data.data);
-            //     this.isLoading = false;
-            // } else {
-            //     this.isLoading = false;
-            //     alert('Ошибка');
-            // }
-
         }
     },
     computed: {

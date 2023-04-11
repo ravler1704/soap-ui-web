@@ -20,7 +20,7 @@ class SoapController extends AbstractController
     private string $methodName;
     private array $queryParamList;
 
-    #[Route('/soap/data')]
+    #[Route('/soap')]
     public function number(Request $request): Response
     {
         $wsdlLoginData = $request->request->all();
